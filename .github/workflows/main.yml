@@ -15,18 +15,17 @@ jobs:
     # 1. Download and extract code directly into an isolated folder
     - name: Download Repository Archive
       run: |
-        # Added gzip here alongside tar
         yum install -y tar gzip
         
-        curl -L -s \
+        # Added -f to crash here if the URL is wrong, and updated the URL structure
+        curl -L -f -s \
           -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          https://github.com/${{ github.repository }}/tarball/main \
+          https://github.com/${{ github.repository }}/tarball \
           -o source.tar.gz
           
         mkdir site-build
         tar -xzf source.tar.gz -C site-build --strip-components=1
         rm source.tar.gz
-
 
     # 2. Sync directly to S3 using the environment variables for authentication
     - name: Deploy to S3 Bucket
