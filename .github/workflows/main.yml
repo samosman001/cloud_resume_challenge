@@ -8,18 +8,22 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # We use AWS's official Docker image instead of GitHub's default runner environment.
-    # This image contains the pre-installed AWS CLI and runs pure shell commands.
     container:
       image: amazon/aws-cli:latest
 
     steps:
-    # 1. Manually clone the repository using native Git (bypassing actions/checkout)
+    # 1. Clear out the workspace and fetch the repository code cleanly using native Git
     - name: Checkout Code Natively
       run: |
         yum install -y git
-        git clone --depth=1 https://github.com{{ github.repository }}.git .
-        git checkout ${{ github.sha }}
+        # Mark the current directory as safe so Git doesn't complain about ownership ownership permissions
+        git config --global --add safe.directory /__w/${{ github.event.repository.name }}/${{ github.event.repository.name }}
+        
+        # Initialize and pull the code manually
+        git init
+        git remote add origin https://github.com{{ github.repository }}.git
+        git fetch --depth=1 origin ${{ github.sha }}
+        git checkout FETCH_HEAD
 
     # 2. Sync directly to S3 using the environment variables for authentication
     - name: Deploy to S3 Bucket
