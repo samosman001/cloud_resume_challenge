@@ -1,4 +1,4 @@
-name: Deploy Static Website to S3 (No Git, No Node)
+name: Deploy Static Website to S3
 
 on:
   push:
@@ -10,29 +10,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. Download and extract the code in the native Ubuntu environment
+    # 1. Pull the public code archive natively using standard Linux utilities
     - name: Download Repository Archive
       run: |
-        curl -L -f -s \
-          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-          "https://github.com/${{ github.repository }}/tarball" \
-          -o source.tar.gz
-          
+        curl -L -f -s "https://github.com/${{ github.repository }}/archive/refs/heads/main.tar.gz" -o source.tar.gz
         mkdir site-build
         tar -xzf source.tar.gz -C site-build --strip-components=1
         rm source.tar.gz
 
-    # 2. Spin up the AWS container to handle the sync step natively
+    # 2. Sync the directory contents to S3 using the official AWS CLI container
     - name: Deploy to S3 Bucket
       uses: docker://amazon/aws-cli:latest
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION: us-east-2
+        AWS_DEFAULT_REGION: us-east-2 # Change to your bucket's AWS region
       with:
         args: >-
           s3 sync ./site-build s3://${{ secrets.AWS_S3_BUCKET }}
           --delete
-          --exclude ".git/*"
           --exclude ".github/*"
           --exclude "README.md"
