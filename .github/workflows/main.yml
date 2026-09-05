@@ -17,7 +17,7 @@ jobs:
       run: |
         yum install -y git
         # Mark the current directory as safe so Git doesn't complain about ownership ownership permissions
-        git config --global --add safe.directory /__w/${{ github.event.repository.name }}/${{ github.event.repository.name }}
+        git config --global --add safe.directory /${{ github.event.repository.name }}
         
         # Initialize and pull the code manually
         git init
