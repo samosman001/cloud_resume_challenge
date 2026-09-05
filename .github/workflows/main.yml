@@ -5,25 +5,16 @@ on:
     branches:
       - main
 
-# Explicitly allow the workflow to read repository contents (Crucial for private repos)
-permissions:
-  contents: read
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    container:
-      image: amazon/aws-cli:latest
 
     steps:
-    # 1. Download and extract code directly into an isolated folder
+    # 1. Download and extract the code in the native Ubuntu environment
     - name: Download Repository Archive
       run: |
-        yum install -y tar gzip
-        
-        # Notice the exact URL starts with api.github.com
         curl -L -f -s \
-          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
           "https://github.com/${{ github.repository }}/tarball" \
           -o source.tar.gz
           
@@ -31,15 +22,17 @@ jobs:
         tar -xzf source.tar.gz -C site-build --strip-components=1
         rm source.tar.gz
 
-    # 2. Sync ONLY the contents of the isolated folder to S3
+    # 2. Spin up the AWS container to handle the sync step natively
     - name: Deploy to S3 Bucket
+      uses: docker://amazon/aws-cli:latest
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION: us-east-1 # Change to your bucket's AWS region
-      run: |
-        aws s3 sync ./site-build s3://${{ secrets.AWS_S3_BUCKET }} \
-          --delete \
-          --exclude ".git/*" \
-          --exclude ".github/*" \
+        AWS_DEFAULT_REGION: us-east-2
+      with:
+        args: >-
+          s3 sync ./site-build s3://${{ secrets.AWS_S3_BUCKET }}
+          --delete
+          --exclude ".git/*"
+          --exclude ".github/*"
           --exclude "README.md"
