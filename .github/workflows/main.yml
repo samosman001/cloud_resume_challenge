@@ -20,7 +20,7 @@ jobs:
         # Download the main branch source code as a tarball using GitHub's native archive link
         curl -L -s \
           -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          https://github.com${{ github.repository }}/tarball/main \
+          https://github.com/${{ github.repository }}/tarball/main \
           -o source.tar.gz
           
         # Extract the files and strip the top-level GitHub-generated folder wrapper
