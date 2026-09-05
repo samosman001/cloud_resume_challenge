@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+# Explicitly allow the workflow to read repository contents (Crucial for private repos)
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -17,24 +21,24 @@ jobs:
       run: |
         yum install -y tar gzip
         
-        # Added -f to crash here if the URL is wrong, and updated the URL structure
+        # Notice the exact URL starts with api.github.com
         curl -L -f -s \
           -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          https://github.com/${{ github.repository }}/tarball \
+          "https://github.com/${{ github.repository }}/tarball" \
           -o source.tar.gz
           
         mkdir site-build
         tar -xzf source.tar.gz -C site-build --strip-components=1
         rm source.tar.gz
 
-    # 2. Sync directly to S3 using the environment variables for authentication
+    # 2. Sync ONLY the contents of the isolated folder to S3
     - name: Deploy to S3 Bucket
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION: us-east-2 # Change to your bucket's AWS region
+        AWS_DEFAULT_REGION: us-east-1 # Change to your bucket's AWS region
       run: |
-        aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }} \
+        aws s3 sync ./site-build s3://${{ secrets.AWS_S3_BUCKET }} \
           --delete \
           --exclude ".git/*" \
           --exclude ".github/*" \
