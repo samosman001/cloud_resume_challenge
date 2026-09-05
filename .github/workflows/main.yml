@@ -1,28 +1,38 @@
-name: Sync to Amazon S3
+name: Deploy Static Website to S3
 
 on:
   push:
-    branches:
-      - main # Change this to your default branch name if it's different
+    branches: [ main ]
+  workflow_dispatch:  # Allows manual triggering
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Check out the repository code
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-    # Step 2: Configure AWS Credentials
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v4
+    # No build step needed for this simple static website
+    # Just update the deployment timestamp in the JavaScript file
+    - name: Update deployment timestamp
+      run: |
+        echo "// Updating timestamp for deployment on $(date)" >> js/script.js
+        echo "// Deployment ID: ${{ github.run_id }}" >> js/script.js
+
+    # Configure AWS credentials
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ secrets.AWS_REGION }}
+        aws-region: "ap-south-1"
 
-    # Step 3: Sync files to S3 bucket
-    - name: Sync to S3 Bucket
+    # Deploy to S3 bucket - directly sync the repository contents
+    - name: Deploy to S3
       run: |
-        aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }} --delete --exclude ".git/*" --exclude ".github/*"
+        aws s3 sync ./ s3://${{ secrets.S3_BUCKET_NAME }}/ \
+          --delete \
+          --exclude ".git/*" \
+          --exclude ".github/*" \
+          --exclude "README.md" 
