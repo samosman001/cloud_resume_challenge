@@ -1,29 +1,32 @@
-name: Deploy Static Website to S3
+name: Deploy Static Website to S3 (No Node)
 
 on:
   push:
     branches:
-      - main # Triggers the look whenever you push to the main branch
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # We use AWS's official Docker image instead of GitHub's default runner environment.
+    # This image contains the pre-installed AWS CLI and runs pure shell commands.
+    container:
+      image: amazon/aws-cli:latest
 
     steps:
-    # 1. Pull the code from your repository into the runner
-    - name: Checkout Repository
-      uses: actions/checkout@v4
+    # 1. Manually clone the repository using native Git (bypassing actions/checkout)
+    - name: Checkout Code Natively
+      run: |
+        yum install -y git
+        git clone --depth=1 https://github.com{{ github.repository }}.git .
+        git checkout ${{ github.sha }}
 
-    # 2. Authenticate securely with AWS using your GitHub Secrets
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v4
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-2 # Change to your bucket's AWS region
-
-    # 3. Sync the files natively using the AWS CLI
+    # 2. Sync directly to S3 using the environment variables for authentication
     - name: Deploy to S3 Bucket
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: us-east-2 # Change to your bucket's AWS region
       run: |
         aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET }} \
           --delete \
