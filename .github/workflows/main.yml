@@ -12,24 +12,21 @@ jobs:
       image: amazon/aws-cli:latest
 
     steps:
-    # 1. Download and extract the code archive via GitHub's API (Bypassing Git entirely)
+    # 1. Download and extract code directly into an isolated folder
     - name: Download Repository Archive
       run: |
-        yum install -y tar
+        # Added gzip here alongside tar
+        yum install -y tar gzip
         
-        # Download the main branch source code as a tarball using GitHub's native archive link
         curl -L -s \
           -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           https://github.com/${{ github.repository }}/tarball/main \
           -o source.tar.gz
           
-        # Extract the files and strip the top-level GitHub-generated folder wrapper
-        mkdir workspace
-        tar -xzf source.tar.gz -C workspace --strip-components=1
-        
-        # Move extracted files into the current working directory
-        mv workspace/* workspace/.[!.]* . 2>/dev/null || true
-        rm -rf workspace source.tar.gz
+        mkdir site-build
+        tar -xzf source.tar.gz -C site-build --strip-components=1
+        rm source.tar.gz
+
 
     # 2. Sync directly to S3 using the environment variables for authentication
     - name: Deploy to S3 Bucket
