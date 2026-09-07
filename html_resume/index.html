@@ -24,9 +24,41 @@
         <h2>Junior Cloud Engineer</h2>
     </div>
 
-    <div class="counter">
-        <p>Visitor Count: 0</p>
-    </div>
+    <p>Total Visitors: <span id="counter">Loading...</span></p>
+
+    <script>
+        // Replace with your live API Gateway Invoke URL
+        const API_URL = "https://t2bcidzga5.execute-api.us-east-2.amazonaws.com/dev";
+
+        async function fetchVisitorCount() {
+            const counterElement = document.getElementById("counter");
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                // Update DOM with the retrieved count
+                counterElement.innerText = data.count;
+            } catch (error) {
+                console.error("Failed to update visitor count:", error);
+                counterElement.innerText = "Unavailable";
+            }
+        }
+
+        // Run the counter update immediately when the DOM content loads
+        document.addEventListener("DOMContentLoaded", fetchVisitorCount);
+    </script>
+
 </body>
 
 <footer>
