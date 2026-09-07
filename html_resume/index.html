@@ -45,19 +45,36 @@
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
 
-                const data = await response.json();
-                
-                // Update DOM with the retrieved count
-                counterElement.innerText = data.count;
+                const rawData = await response.json();
+                console.log("Raw API Response Data:", rawData); // This lets us see exactly what AWS sent
+
+                // Handle BOTH standard format or Lambda proxy format dynamically
+                let finalCount;
+                if (rawData.body) {
+                    // If API Gateway passed the response string wrapped inside a body key
+                    const parsedBody = typeof rawData.body === 'string' ? json.parse(rawData.body) : rawData.body;
+                    finalCount = parsedBody.count;
+                } else {
+                    // If it returned a direct JSON object
+                    finalCount = rawData.count;
+                }
+
+                if (finalCount !== undefined) {
+                    counterElement.innerText = finalCount;
+                } else {
+                    throw new Error("Could not locate 'count' key in the API response properties.");
+                }
+
             } catch (error) {
+                // This prints the exact reason why it says 'Unavailable' to your developer tools
                 console.error("Failed to update visitor count:", error);
                 counterElement.innerText = "Unavailable";
             }
         }
 
-        // Run the counter update immediately when the DOM content loads
         document.addEventListener("DOMContentLoaded", fetchVisitorCount);
     </script>
+
 
 </body>
 
