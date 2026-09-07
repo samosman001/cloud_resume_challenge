@@ -28,6 +28,10 @@ html {
     color: maroon;
 }
 
+.certifications li {
+    color: green;
+}
+
 .experience {
     color: maroon;
 }
@@ -59,4 +63,17 @@ footer {
 
 .counter p {
     color: purple;
+}
+
+.p1 {
+    color: green;
+}
+
+.p2 {
+    color: maroon;
+
+}
+
+.p3 {
+    color: blue;
 }
