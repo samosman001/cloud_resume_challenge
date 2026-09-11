@@ -1,0 +1,181 @@
+---
+Metadata:
+  AWSToolsMetrics:
+    IaC_Generator: "arn:aws:cloudformation:us-east-2:404107359323:generatedTemplate/49808c51-dc79-4485-bcbf-204b1b00c4b5"
+Resources:
+  CloudFrontDistribution:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::CloudFront::Distribution"
+    DeletionPolicy: "Retain"
+    Properties:
+      DistributionConfig:
+        Logging:
+          IncludeCookies: false
+          Bucket: ""
+          Prefix: ""
+        Comment: ""
+        DefaultRootObject: "index.html"
+        Origins:
+        - ConnectionTimeout: 10
+          OriginAccessControlId: "E3JURGXYKCW2ES"
+          ConnectionAttempts: 3
+          OriginCustomHeaders: []
+          DomainName: "osman-resume-website-404107359323-us-east-2-an.s3.us-east-2.amazonaws.com"
+          OriginShield:
+            Enabled: false
+          S3OriginConfig:
+            OriginReadTimeout: 30
+            OriginAccessIdentity: ""
+          OriginPath: "/html_resume"
+          Id: "osman-resume-website-404107359323-us-east-2-an.s3.amazonaws.com-mtp3hykzhml"
+        ViewerCertificate:
+          MinimumProtocolVersion: "TLSv1"
+          SslSupportMethod: "vip"
+          CloudFrontDefaultCertificate: true
+        PriceClass: "PriceClass_All"
+        DefaultCacheBehavior:
+          Compress: true
+          FunctionAssociations: []
+          LambdaFunctionAssociations: []
+          TargetOriginId: "osman-resume-website-404107359323-us-east-2-an.s3.amazonaws.com-mtp3hykzhml"
+          ViewerProtocolPolicy: "redirect-to-https"
+          GrpcConfig:
+            Enabled: false
+          TrustedSigners: []
+          FieldLevelEncryptionId: ""
+          TrustedKeyGroups: []
+          AllowedMethods:
+          - "HEAD"
+          - "GET"
+          CachedMethods:
+          - "HEAD"
+          - "GET"
+          SmoothStreaming: false
+          CachePolicyId: "658327ea-f89d-4fab-a63d-7e88639e58f6"
+        Staging: false
+        CustomErrorResponses: []
+        ContinuousDeploymentPolicyId: ""
+        OriginGroups:
+          Quantity: 0
+          Items: []
+        Enabled: true
+        Aliases: []
+        IPV6Enabled: true
+        WebACLId: "arn:aws:wafv2:us-east-1:404107359323:global/webacl/CreatedByCloudFront-e0928f92/6a4c7f00-5c7e-4063-abe2-0909ffdd08b6"
+        HttpVersion: "http2and3"
+        Restrictions:
+          GeoRestriction:
+            Locations: []
+            RestrictionType: "none"
+        CacheBehaviors: []
+      Tags:
+      - Value: "Dev"
+        Key: "Environment"
+      - Value: "dev-distro-01"
+        Key: "Name"
+  CloudFrontOriginAccessControl:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::CloudFront::OriginAccessControl"
+    DeletionPolicy: "Retain"
+    Properties:
+      OriginAccessControlConfig:
+        SigningBehavior: "always"
+        Description: "Created by CloudFront"
+        SigningProtocol: "sigv4"
+        OriginAccessControlOriginType: "s3"
+        Name: "oac-osman-resume-website-404107359323-us-east-2-an.s-mtp3im2ppkh"
+  S3BucketOsmanresumewebsite404107359323useast2an:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::S3::Bucket"
+    DeletionPolicy: "Retain"
+    Properties:
+      AbacStatus: "Disabled"
+      PublicAccessBlockConfiguration:
+        RestrictPublicBuckets: false
+        IgnorePublicAcls: false
+        BlockPublicPolicy: false
+        BlockPublicAcls: false
+      BucketName: "osman-resume-website-404107359323-us-east-2-an"
+      OwnershipControls:
+        Rules:
+        - ObjectOwnership: "BucketOwnerEnforced"
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+        - BucketKeyEnabled: true
+          BlockedEncryptionTypes:
+            EncryptionType:
+            - "SSE-C"
+          ServerSideEncryptionByDefault:
+            SSEAlgorithm: "AES256"
+      Tags:
+      - Value: "Dev"
+        Key: "Environment"
+  CloudFrontCachePolicy:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::CloudFront::CachePolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      CachePolicyConfig:
+        Comment: "Policy with caching enabled. Supports Gzip and Brotli compression."
+        MinTTL: 1
+        MaxTTL: 3.1536E7
+        ParametersInCacheKeyAndForwardedToOrigin:
+          QueryStringsConfig:
+            QueryStringBehavior: "none"
+          EnableAcceptEncodingBrotli: true
+          HeadersConfig:
+            HeaderBehavior: "none"
+          CookiesConfig:
+            CookieBehavior: "none"
+          EnableAcceptEncodingGzip: true
+        DefaultTTL: 86400
+        Name: "Managed-CachingOptimized"
+  S3BucketPolicyOsmanresumewebsite404107359323useast2an:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::S3::BucketPolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      Bucket: "osman-resume-website-404107359323-us-east-2-an"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+        - Resource: "arn:aws:s3:::osman-resume-website-404107359323-us-east-2-an"
+          Action:
+          - "s3:ListBucket"
+          - "s3:GetBucketLocation"
+          Effect: "Allow"
+          Principal:
+            AWS: "arn:aws:iam::017820678889:user/s3-app-user"
+          Sid: "AllowUserToSyncBucket"
+        - Resource: "arn:aws:s3:::osman-resume-website-404107359323-us-east-2-an/*"
+          Action:
+          - "s3:PutObject"
+          - "s3:GetObject"
+          - "s3:DeleteObject"
+          Effect: "Allow"
+          Principal:
+            AWS: "arn:aws:iam::017820678889:user/s3-app-user"
+          Sid: "AllowUserToManageObjects"
+        - Condition:
+            ArnLike:
+              AWS:SourceArn: "arn:aws:cloudfront::404107359323:distribution/E212Y4QMERPNM7"
+          Resource: "arn:aws:s3:::osman-resume-website-404107359323-us-east-2-an/*"
+          Action: "s3:GetObject"
+          Effect: "Allow"
+          Principal:
+            Service: "cloudfront.amazonaws.com"
+          Sid: "AllowCloudFrontServicePrincipal"
+        - Resource: "arn:aws:s3:::osman-resume-website-404107359323-us-east-2-an/*"
+          Action: "s3:GetObject"
+          Effect: "Allow"
+          Principal: "*"
+          Sid: "PublicReadGetObject"
+        - Condition:
+            StringEquals:
+              AWS:SourceArn: "arn:aws:cloudfront::404107359323:distribution/E212Y4QMERPNM7"
+          Resource: "arn:aws:s3:::osman-resume-website-404107359323-us-east-2-an/*"
+          Action: "s3:GetObject"
+          Effect: "Allow"
+          Principal:
+            Service: "cloudfront.amazonaws.com"
+          Sid: "AllowCloudFrontServicePrincipal"
