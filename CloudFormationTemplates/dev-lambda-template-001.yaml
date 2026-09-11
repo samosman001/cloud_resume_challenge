@@ -1,0 +1,391 @@
+---
+Metadata:
+  AWSToolsMetrics:
+    IaC_Generator: "arn:aws:cloudformation:us-east-2:404107359323:generatedTemplate/9a106512-547e-4663-92ab-03955c01274f"
+Parameters:
+  LambdaFunctionDevfunction001CodeS3ObjectStorageModeX3HM6:
+    NoEcho: "true"
+    Type: "String"
+    Description: "Specifies the storage mode for the deployment package. Use ``COPY``\
+      \ to store the package in LAMlong-managed storage. Use ``REFERENCE`` to read\
+      \ the package directly from the Amazon S3 bucket. If omitted, the default is\
+      \ ``COPY``.Possible values: [COPY, REFERENCE]\nThis property can be replaced\
+      \ with other types"
+  LambdaFunctionDevfunction001CodeS3ObjectVersionCDh0o:
+    NoEcho: "true"
+    Type: "String"
+    Description: "For versioned objects, the version of the deployment package object\
+      \ to use."
+  LambdaFunctionDevfunction001CodeZipFileQRogz:
+    NoEcho: "true"
+    Type: "String"
+    Description: "(Node.js and Python) The source code of your Lambda function. If\
+      \ you include your function source inline with this parameter, CFN places it\
+      \ in a file named ``index`` and zips it to create a [deployment package](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html).\
+      \ This zip file cannot exceed 4MB. For the ``Handler`` property, the first part\
+      \ of the handler identifier must be ``index``. For example, ``index.handler``.\n\
+      \  When you specify source code inline for a Node.js function, the ``index``\
+      \ file that CFN creates uses the extension ``.js``. This means that Node.js\
+      \ treats the file as a CommonJS module.\n When using Node.js 24 or later, Node.js\
+      \ can automatically detect if a ``.js`` file should be treated as CommonJS or\
+      \ as an ES module. To enable auto-detection, add the ``--experimental-detect-module``\
+      \ flag to the ``NODE_OPTIONS`` environment variable. For more information, see\
+      \ [Experimental Node.js features](https://docs.aws.amazon.com//lambda/latest/dg/lambda-nodejs.html#nodejs-experimental-features).\n\
+      \   For JSON, you must escape quotes and special characters such as newline\
+      \ (``\\n``) with a backslash.\n If you specify a function that interacts with\
+      \ an AWS CloudFormation custom resource, you don't have to write your own functions\
+      \ to send responses to the custom resource that invoked the function. AWS CloudFormation\
+      \ provides a response module ([cfn-response](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-lambda-function-code-cfnresponsemodule.html))\
+      \ that simplifies sending responses. See [Using Lambda with CloudFormation](https://docs.aws.amazon.com/lambda/latest/dg/services-cloudformation.html)\
+      \ for details."
+  LambdaFunctionDevfunctionform001CodeS3ObjectStorageModelYzoc:
+    NoEcho: "true"
+    Type: "String"
+    Description: "Specifies the storage mode for the deployment package. Use ``COPY``\
+      \ to store the package in LAMlong-managed storage. Use ``REFERENCE`` to read\
+      \ the package directly from the Amazon S3 bucket. If omitted, the default is\
+      \ ``COPY``.Possible values: [COPY, REFERENCE]\nThis property can be replaced\
+      \ with other types"
+  LambdaFunctionDevfunction001CodeSourceKMSKeyArnqcwSd:
+    NoEcho: "true"
+    Type: "String"
+    Description: "The ARN of the KMSlong (KMS) customer managed key that's used to\
+      \ encrypt your function's .zip deployment package. If you don't provide a customer\
+      \ managed key, Lambda uses an [owned key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-cmk)."
+  LambdaFunctionDevfunctionform001CodeZipFiledfWoO:
+    NoEcho: "true"
+    Type: "String"
+    Description: "(Node.js and Python) The source code of your Lambda function. If\
+      \ you include your function source inline with this parameter, CFN places it\
+      \ in a file named ``index`` and zips it to create a [deployment package](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html).\
+      \ This zip file cannot exceed 4MB. For the ``Handler`` property, the first part\
+      \ of the handler identifier must be ``index``. For example, ``index.handler``.\n\
+      \  When you specify source code inline for a Node.js function, the ``index``\
+      \ file that CFN creates uses the extension ``.js``. This means that Node.js\
+      \ treats the file as a CommonJS module.\n When using Node.js 24 or later, Node.js\
+      \ can automatically detect if a ``.js`` file should be treated as CommonJS or\
+      \ as an ES module. To enable auto-detection, add the ``--experimental-detect-module``\
+      \ flag to the ``NODE_OPTIONS`` environment variable. For more information, see\
+      \ [Experimental Node.js features](https://docs.aws.amazon.com//lambda/latest/dg/lambda-nodejs.html#nodejs-experimental-features).\n\
+      \   For JSON, you must escape quotes and special characters such as newline\
+      \ (``\\n``) with a backslash.\n If you specify a function that interacts with\
+      \ an AWS CloudFormation custom resource, you don't have to write your own functions\
+      \ to send responses to the custom resource that invoked the function. AWS CloudFormation\
+      \ provides a response module ([cfn-response](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-lambda-function-code-cfnresponsemodule.html))\
+      \ that simplifies sending responses. See [Using Lambda with CloudFormation](https://docs.aws.amazon.com/lambda/latest/dg/services-cloudformation.html)\
+      \ for details."
+  LambdaFunctionDevfunctionform001CodeS3KeyrHpgw:
+    NoEcho: "true"
+    Type: "String"
+    Description: "The Amazon S3 key of the deployment package."
+  LambdaFunctionDevfunction001CodeS3Key1FtQh:
+    NoEcho: "true"
+    Type: "String"
+    Description: "The Amazon S3 key of the deployment package."
+  LambdaFunctionDevfunctionform001CodeSourceKMSKeyArn8Zulo:
+    NoEcho: "true"
+    Type: "String"
+    Description: "The ARN of the KMSlong (KMS) customer managed key that's used to\
+      \ encrypt your function's .zip deployment package. If you don't provide a customer\
+      \ managed key, Lambda uses an [owned key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-owned-cmk)."
+  LambdaFunctionDevfunctionform001CodeS3ObjectVersionGRlUh:
+    NoEcho: "true"
+    Type: "String"
+    Description: "For versioned objects, the version of the deployment package object\
+      \ to use."
+  LambdaFunctionDevfunction001CodeS3BucketBoH6c:
+    NoEcho: "true"
+    Type: "String"
+    Description: "An Amazon S3 bucket in the same AWS-Region as your function. The\
+      \ bucket can be in a different AWS-account."
+  LambdaFunctionDevfunction001CodeImageUriqx770:
+    NoEcho: "true"
+    Type: "String"
+    Description: "URI of a [container image](https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html)\
+      \ in the Amazon ECR registry."
+  LambdaFunctionDevfunctionform001CodeImageUri43UWD:
+    NoEcho: "true"
+    Type: "String"
+    Description: "URI of a [container image](https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html)\
+      \ in the Amazon ECR registry."
+  LambdaFunctionDevfunctionform001CodeS3Bucketv4TAo:
+    NoEcho: "true"
+    Type: "String"
+    Description: "An Amazon S3 bucket in the same AWS-Region as your function. The\
+      \ bucket can be in a different AWS-account."
+Resources:
+  IAMManagedPolicyPolicyserviceroleAWSLambdaBasicExecutionRole7077629256ca4fe8bd3bf5987c8bc9b3:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::IAM::ManagedPolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      ManagedPolicyName: "AWSLambdaBasicExecutionRole-70776292-56ca-4fe8-bd3b-f5987c8bc9b3"
+      Path: "/service-role/"
+      Description: ""
+      Groups: []
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+        - Resource: "arn:aws:logs:us-east-2:404107359323:*"
+          Action: "logs:CreateLogGroup"
+          Effect: "Allow"
+        - Resource:
+          - "arn:aws:logs:us-east-2:404107359323:log-group:/aws/lambda/dev-function-001:*"
+          Action:
+          - "logs:CreateLogStream"
+          - "logs:PutLogEvents"
+          Effect: "Allow"
+        - Resource: "arn:aws:dynamodb:us-east-2:404107359323:table/dev-table-001"
+          Action:
+          - "dynamodb:PutItem"
+          - "dynamodb:GetItem"
+          - "dynamodb:UpdateItem"
+          - "dynamodb:DeleteItem"
+          Effect: "Allow"
+      Roles:
+      - "dev-function-001-role-14xjrtdd"
+      Users: []
+  ApiGatewayV2Api:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGatewayV2::Api"
+    DeletionPolicy: "Retain"
+    Properties:
+      IpAddressType: "dualstack"
+      RouteSelectionExpression: "$request.method $request.path"
+      DisableExecuteApiEndpoint: false
+      ProtocolType: "HTTP"
+      Tags:
+        Environment: "Dev"
+      Name: "dev-api-form-001"
+  LambdaPermissionFunctiondevfunctionform001:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::Lambda::Permission"
+    DeletionPolicy: "Retain"
+    Properties:
+      FunctionName: "arn:aws:lambda:us-east-2:404107359323:function:dev-function-form-001"
+      Action: "lambda:InvokeFunction"
+      SourceArn: "arn:aws:execute-api:us-east-2:404107359323:qwv4s2940g/*/*/"
+      Principal: "apigateway.amazonaws.com"
+  ApiGatewayV2Integration:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGatewayV2::Integration"
+    DeletionPolicy: "Retain"
+    Properties:
+      IntegrationUri: "arn:aws:lambda:us-east-2:404107359323:function:dev-function-001"
+      PayloadFormatVersion: "2.0"
+      ConnectionType: "INTERNET"
+      RequestTemplates: {}
+      ResponseParameters: {}
+      TimeoutInMillis: 30000
+      ApiId: "t2bcidzga5"
+      IntegrationMethod: "POST"
+      IntegrationType: "AWS_PROXY"
+  LambdaPermissionFunctiondevfunction001:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::Lambda::Permission"
+    DeletionPolicy: "Retain"
+    Properties:
+      FunctionName: "arn:aws:lambda:us-east-2:404107359323:function:dev-function-001"
+      Action: "lambda:InvokeFunction"
+      SourceArn: "arn:aws:execute-api:us-east-2:404107359323:t2bcidzga5/*/*/counter"
+      Principal: "apigateway.amazonaws.com"
+  IAMManagedPolicyPolicyserviceroleAWSLambdaBasicExecutionRole81fa0f2553eb4575b10267f462f60302:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::IAM::ManagedPolicy"
+    DeletionPolicy: "Retain"
+    Properties:
+      ManagedPolicyName: "AWSLambdaBasicExecutionRole-81fa0f25-53eb-4575-b102-67f462f60302"
+      Path: "/service-role/"
+      Description: ""
+      Groups: []
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+        - Resource: "arn:aws:logs:us-east-2:404107359323:*"
+          Action: "logs:CreateLogGroup"
+          Effect: "Allow"
+        - Resource:
+          - "arn:aws:logs:us-east-2:404107359323:log-group:/aws/lambda/dev-function-form-001:*"
+          Action:
+          - "logs:CreateLogStream"
+          - "logs:PutLogEvents"
+          Effect: "Allow"
+        - Resource: "arn:aws:dynamodb:us-east-2:404107359323:table/dev-table-form-002"
+          Action:
+          - "dynamodb:PutItem"
+          - "dynamodb:GetItem"
+          - "dynamodb:UpdateItem"
+          Effect: "Allow"
+        - Resource: "*"
+          Action:
+          - "ses:SendEmail"
+          - "ses:SendRawEmail"
+          Effect: "Allow"
+      Roles:
+      - "dev-function-form-001-role-ito81e7j"
+      Users: []
+  LambdaFunctionDevfunctionform001:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::Lambda::Function"
+    DeletionPolicy: "Retain"
+    Properties:
+      MemorySize: 128
+      Description: ""
+      TracingConfig:
+        Mode: "PassThrough"
+      Timeout: 3
+      RuntimeManagementConfig:
+        UpdateRuntimeOn: "Auto"
+      Handler: "lambda_function.lambda_handler"
+      Code:
+        SourceKMSKeyArn:
+          Ref: "LambdaFunctionDevfunctionform001CodeSourceKMSKeyArn8Zulo"
+        S3ObjectVersion:
+          Ref: "LambdaFunctionDevfunctionform001CodeS3ObjectVersionGRlUh"
+        S3Bucket:
+          Ref: "LambdaFunctionDevfunctionform001CodeS3Bucketv4TAo"
+        ZipFile:
+          Ref: "LambdaFunctionDevfunctionform001CodeZipFiledfWoO"
+        S3Key:
+          Ref: "LambdaFunctionDevfunctionform001CodeS3KeyrHpgw"
+        S3ObjectStorageMode:
+          Ref: "LambdaFunctionDevfunctionform001CodeS3ObjectStorageModelYzoc"
+        ImageUri:
+          Ref: "LambdaFunctionDevfunctionform001CodeImageUri43UWD"
+      Role: "arn:aws:iam::404107359323:role/service-role/dev-function-form-001-role-ito81e7j"
+      FileSystemConfigs: []
+      FunctionName: "dev-function-form-001"
+      Runtime: "python3.14"
+      PackageType: "Zip"
+      LoggingConfig:
+        LogFormat: "Text"
+        LogGroup: "/aws/lambda/dev-function-form-001"
+      RecursiveLoop: "Terminate"
+      EphemeralStorage:
+        Size: 512
+      Architectures:
+      - "x86_64"
+  LambdaFunctionDevfunction001:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::Lambda::Function"
+    DeletionPolicy: "Retain"
+    Properties:
+      MemorySize: 128
+      Description: ""
+      TracingConfig:
+        Mode: "PassThrough"
+      Timeout: 3
+      RuntimeManagementConfig:
+        UpdateRuntimeOn: "Auto"
+      Handler: "lambda_function.lambda_handler"
+      Code:
+        SourceKMSKeyArn:
+          Ref: "LambdaFunctionDevfunction001CodeSourceKMSKeyArnqcwSd"
+        S3ObjectVersion:
+          Ref: "LambdaFunctionDevfunction001CodeS3ObjectVersionCDh0o"
+        S3Bucket:
+          Ref: "LambdaFunctionDevfunction001CodeS3BucketBoH6c"
+        ZipFile:
+          Ref: "LambdaFunctionDevfunction001CodeZipFileQRogz"
+        S3Key:
+          Ref: "LambdaFunctionDevfunction001CodeS3Key1FtQh"
+        S3ObjectStorageMode:
+          Ref: "LambdaFunctionDevfunction001CodeS3ObjectStorageModeX3HM6"
+        ImageUri:
+          Ref: "LambdaFunctionDevfunction001CodeImageUriqx770"
+      Role: "arn:aws:iam::404107359323:role/service-role/dev-function-001-role-14xjrtdd"
+      FileSystemConfigs: []
+      FunctionName: "dev-function-001"
+      Runtime: "python3.14"
+      PackageType: "Zip"
+      LoggingConfig:
+        LogFormat: "Text"
+        LogGroup: "/aws/lambda/dev-function-001"
+      RecursiveLoop: "Terminate"
+      EphemeralStorage:
+        Size: 512
+      Architectures:
+      - "x86_64"
+  ApiGatewayV2IntegrationCF:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGatewayV2::Integration"
+    DeletionPolicy: "Retain"
+    Properties:
+      IntegrationUri: "arn:aws:lambda:us-east-2:404107359323:function:dev-function-form-001"
+      PayloadFormatVersion: "2.0"
+      ConnectionType: "INTERNET"
+      RequestTemplates: {}
+      ResponseParameters: {}
+      TimeoutInMillis: 30000
+      ApiId: "qwv4s2940g"
+      IntegrationMethod: "POST"
+      IntegrationType: "AWS_PROXY"
+  IAMRoleDevfunctionform001roleito81e7j:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::IAM::Role"
+    DeletionPolicy: "Retain"
+    Properties:
+      Path: "/service-role/"
+      ManagedPolicyArns:
+      - "arn:aws:iam::404107359323:policy/service-role/AWSLambdaBasicExecutionRole-81fa0f25-53eb-4575-b102-67f462f60302"
+      MaxSessionDuration: 3600
+      RoleName: "dev-function-form-001-role-ito81e7j"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+        - Action: "sts:AssumeRole"
+          Effect: "Allow"
+          Principal:
+            Service: "lambda.amazonaws.com"
+  IAMRoleDevfunction001role14xjrtdd:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::IAM::Role"
+    DeletionPolicy: "Retain"
+    Properties:
+      Path: "/service-role/"
+      ManagedPolicyArns:
+      - "arn:aws:iam::404107359323:policy/service-role/AWSLambdaBasicExecutionRole-70776292-56ca-4fe8-bd3b-f5987c8bc9b3"
+      MaxSessionDuration: 3600
+      RoleName: "dev-function-001-role-14xjrtdd"
+      Description: ""
+      Policies:
+      - PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+          - Resource: "arn:aws:dynamodb:us-east-2:404107359323:table/Users"
+            Action:
+            - "dynamodb:PutItem"
+            - "dynamodb:GetItem"
+            - "dynamodb:UpdateItem"
+            - "dynamodb:DeleteItem"
+            Effect: "Allow"
+        PolicyName: "dev-policy-001"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+        - Action: "sts:AssumeRole"
+          Effect: "Allow"
+          Principal:
+            Service: "lambda.amazonaws.com"
+  ApiGatewayV2ApiM3:
+    UpdateReplacePolicy: "Retain"
+    Type: "AWS::ApiGatewayV2::Api"
+    DeletionPolicy: "Retain"
+    Properties:
+      IpAddressType: "ipv4"
+      RouteSelectionExpression: "$request.method $request.path"
+      CorsConfiguration:
+        MaxAge: 0
+        AllowOrigins:
+        - "*"
+        AllowCredentials: false
+        ExposeHeaders: []
+        AllowMethods:
+        - "POST"
+        - "OPTIONS"
+        AllowHeaders:
+        - "content-type"
+      ProtocolType: "HTTP"
+      DisableExecuteApiEndpoint: false
+      Tags: {}
+      Name: "dev-api-001"
