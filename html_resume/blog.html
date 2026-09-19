@@ -33,16 +33,18 @@
         <h3><em>Friday, September 19th, 2026</em></h3>
         <p>
             Today, I finally figured out how to validate my Amazon Certificate Manager (ACM) certificates. I had to switch the domain's name servers<br>
-            to match the hosted zone's name servers. It was confusing because both the domain and hosted name are "osmantech.net".<br><br>
+            to match the hosted zone's name servers. It was confusing because both the domain's name and hosted zone's name are both "osmantech.net".<br><br>
             
-            I also realized that although I created IaC templates using AWS CloudFormation in the past, it would be better to use Serverless Application Manager<br>
-            (SAM) templates. The reason why is because that's what the Cloud Resume Challenge recommends doing (and they are probably better).<br><br>
+            I also realized that although I had created IaC templates using AWS CloudFormation in the past, it would be better to use Serverless<br> 
+            Application Manager (SAM) templates. The reason why is because that's what the Cloud Resume Challenge recommends doing<br> 
+            (and they are probably better).<br><br>
             
             This Cloud Resume Challenge website is now live as "resume.osmantech.net" as of right now! After validating the ACM certificates, I was able to<br>
             create the resume.osmantech.net subdomain and add an A record that links it to the Amazon CloudFront Distribution that is contained in a sub-account<br><br>
             
-            This was somewhat challenging because I did not think that I could use a sub-domain in a root account to direct traffic to a CloudFront distribution<br>
-            that is located within a sub-account. I thought there might be some type of "barrier".<br><br>
+            This was somewhat challenging because I did not realize that I could use a sub-domain in a root account to direct traffic to an Amazon<br>
+            CloudFront Distribution that is located within a sub-account. I thought there might be some type of "barrier" and that I would have to<br>
+            register/host the domain in the same account as the Amazon CloudFront Distribution.<br><br>
 
             I suppose, in the Cloud, the sky is the limit!
         </p>
