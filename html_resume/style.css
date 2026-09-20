@@ -79,7 +79,7 @@ footer {
 }
 
 input, textarea {
-    width: 30%;
+    width: 20%;
     border: solid 2px green;
     margin-bottom: 10px;
     border-radius: 10px;
