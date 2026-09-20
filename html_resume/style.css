@@ -77,3 +77,17 @@ footer {
 .p3 {
     color: blue;
 }
+
+input, textarea {
+    width: 30%;
+    border: solid 2px gray;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+input {
+    height: 25px;
+}
+textarea {
+    height: 75px;
+}
