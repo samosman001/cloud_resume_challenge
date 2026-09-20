@@ -80,14 +80,23 @@ footer {
 
 input, textarea {
     width: 30%;
-    border: solid 2px gray;
+    border: solid 2px green;
     margin-bottom: 10px;
     border-radius: 10px;
 }
 
-input {
+.input1 {
     height: 25px;
 }
-textarea {
+.textarea1 {
     height: 75px;
+}
+
+button {
+    width: 7.5%;
+    border: solid 2.5px black;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: green;
+    color: white;
 }
