@@ -36,3 +36,9 @@
 ehthumbs.db
 Thumbs.db
 
+# Terraform Hidden #
+####################
+.terraform
+.terraform.lock.hcl
+.terrform.tfstate
+.terraform.tfstate.backup
