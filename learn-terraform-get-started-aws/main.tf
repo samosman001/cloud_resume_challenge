@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-east-1"
+  region = "us-east-2"
 }
 
 data "aws_ami" "ubuntu" {
@@ -13,7 +13,6 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-/*
 resource "aws_instance" "app_server" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
@@ -25,9 +24,7 @@ resource "aws_instance" "app_server" {
     Name = var.instance_name
   }
 }
-*/
 
-/*
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.19.0"
@@ -41,4 +38,3 @@ module "vpc" {
 
   enable_dns_hostnames    = true
 }
-*/
