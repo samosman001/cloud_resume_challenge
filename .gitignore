@@ -38,7 +38,26 @@ Thumbs.db
 
 # Terraform Hidden #
 ####################
-.terraform
-.terraform.lock.hcl
-.terrform.tfstate
-.terraform.tfstate.backup
+# Local .terraform directories (contains downloaded plugins and modules)
+.terraform/
+
+# .tfstate files (contains sensitive system data and architecture mappings)
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Exclude all .tfvars files (likely to contain sensitive data like passwords/private keys)
+*.tfvars
+*.tfvars.json
+
+# Ignore override files as they are usually used to override resources locally
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore transient lock info files created by terraform apply
+.terraform.tfstate.lock.info
